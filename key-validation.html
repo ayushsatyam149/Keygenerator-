@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASHURA SERVER - Key Validation</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: black;
+            color: red;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            color: red;
+            text-shadow: 0 0 8px red;
+            margin: 20px;
+        }
+
+        .content {
+            margin-top: 30px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 1em;
+            width: 60%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 2px solid red;
+            color: red;
+            background-color: black;
+            text-align: center;
+        }
+
+        .button {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: red;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 8px red;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #cc0000;
+            box-shadow: 0 0 12px #cc0000;
+        }
+
+        #errorMessage {
+            color: yellow;
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>ASHURA SERVER - Key Validation</h1>
+
+    <div class="content">
+        <p>Enter your VIP Key to Access the ASHURA SERVER:</p>
+        <input type="text" id="keyInput" placeholder="Enter VIP Key">
+        <button class="button" id="validateButton">Validate Key</button>
+
+        <div id="errorMessage"></div>
+    </div>
+
+    <script>
+        // Validate the entered key
+        function validateKey(inputKey) {
+            const storedKey = localStorage.getItem('generatedKey');
+            const storedExpiry = localStorage.getItem('keyExpiry');
+
+            // Check if key is stored and if it is still valid
+            if (storedKey && storedKey === inputKey) {
+                const currentTime = Date.now();
+
+                if (currentTime < storedExpiry) {
+                    // Valid key and within validity period
+                    window.location.href = 'ashura_server.html'; // Redirect to the main page
+                } else {
+                    // Expired key
+                    document.getElementById('errorMessage').textContent = 'The key has expired!';
+                }
+            } else {
+                // Invalid key
+                document.getElementById('errorMessage').textContent = 'Invalid VIP Key!';
+            }
+        }
+
+        // When the user clicks the "Validate Key" button
+        document.getElementById('validateButton').addEventListener('click', () => {
+            const inputKey = document.getElementById('keyInput').value;
+            if (inputKey) {
+                validateKey(inputKey);
+            } else {
+                document.getElementById('errorMessage').textContent = 'Please enter a key!';
+            }
+        });
+    </script>
+
+</body>
+</html>

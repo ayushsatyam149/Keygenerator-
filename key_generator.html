@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASHURA SERVER - Key Generator</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: black;
+            color: red;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            color: red;
+            text-shadow: 0 0 8px red;
+            margin: 20px;
+        }
+
+        .content {
+            margin-top: 30px;
+        }
+
+        .button {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: red;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 8px red;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #cc0000;
+            box-shadow: 0 0 12px #cc0000;
+        }
+
+        #keyDisplay {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: yellow;
+        }
+
+        .validity-info {
+            color: yellow;
+            font-size: 1em;
+            margin-top: 25px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>ASHURA SERVER - Key Generator</h1>
+
+    <div class="content">
+        <button class="button" id="generateKeyButton">Generate VIP Key</button>
+
+        <div id="keyDisplay"></div>
+        <div class="validity-info">
+            <p>Generated Key is Valid for 24 hours!</p>
+            <p>Use this key on <strong><a href="key-validation.html" style="color: yellow;">Key Validation Page</a></strong> to access the VIP section.</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to generate a random key
+        function generateKey() {
+            const key = 'VIP-' + Math.random().toString(36).substr(2, 12).toUpperCase(); // Generates a 12-character random key
+            const expiryTime = Date.now() + 24 * 60 * 60 * 1000; // Key is valid for 24 hours (in ms)
+
+            // Store the generated key and expiry time in localStorage
+            localStorage.setItem('generatedKey', key);
+            localStorage.setItem('keyExpiry', expiryTime);
+
+            return key;
+        }
+
+        // When the user clicks the "Generate VIP Key" button
+        document.getElementById('generateKeyButton').addEventListener('click', () => {
+            const newKey = generateKey();
+            document.getElementById('keyDisplay').textContent = 'Generated VIP Key: ' + newKey;
+        });
+    </script>
+
+</body>
+</html>
