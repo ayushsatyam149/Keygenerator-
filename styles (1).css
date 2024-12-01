@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Prediction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lottery Hack</h1>
+        </header>
+        <div class="game-info">
+            <div id="issueNumber" class="issue-number">Period: 2024112800582</div>
+            <div id="timeRemaining" class="timer">00:15</div>
+            <button id="refreshButton" class="refresh-btn">Refresh</button>
+        </div>
+        <div class="buttons">
+            <button id="bigButton" class="big">Big</button>
+            <button id="smallButton" class="small">Small</button>
+        </div>
+        <div id="predictedNumber" class="prediction">Bet on<br><br>Waiting...</div>
+        <div id="loading" class="loading" style="display: none;">Loading...</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Period</th>
+                    <th>Big/Small</th>
+                    <th>Color</th>
+                    <th>Win/Lose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+### CSS (`styles.css`)
+
+```css
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.issue-number, .timer {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+.refresh-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.refresh-btn:hover {
+    background-color: #0056b3;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.big, .small {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.big {
+    background-color: #28a745;
+    color: white;
+}
+
+.small {
+    background-color: #dc3545;
+    color: white;
+}
+
+.big:hover, .small:hover {
+    transform: scale(1.05);
+}
+
+.prediction {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.loading {
+    text-align: center;
+    font-size: 16px;
+    color: grey;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
